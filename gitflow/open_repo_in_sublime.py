@@ -69,7 +69,7 @@ def open_repo_in_sublime(
             if "sublime-project" in d:
                 projectPath = os.path.join(basePath, d)
                 from subprocess import Popen, PIPE, STDOUT
-                cmd = """subl %(projectPath)s""" % locals()
+                cmd = """open %(projectPath)s""" % locals()
                 p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
                 output = p.communicate()[0]
                 log.debug('output: %(output)s' % locals())

@@ -10,6 +10,7 @@ _git*
 .noseids
 cover/
 html_test_coverage_report/
+_ignore_*
 
 # Compiled python modules.
 *.pyc
@@ -28,3 +29,5 @@ logs/*.log
 transients_cache/
 test_database.sql
 /logs/log.html
+
+path_to_settings.yaml
