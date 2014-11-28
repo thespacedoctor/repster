@@ -22,13 +22,14 @@ cl_utils.py
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
-    repster -i
+    repster -i create
     repster create -l <location> -d <pathToHostDirectory> -n <projectName>
     repster create -b -l <location> -d <pathToHostDirectory> -n <projectName> 
     repster hook -l <location> -n <projectName> -w <domainName>
 
     -h, --help        show this help message
     -v, --version     show version
+    -i, --interactive interactive mode
     -l, --location    github or bitbucket (gh or bb)
     -d, --directiory  path to the directory to host the local git repo
     -n, --name        name of the project
@@ -65,8 +66,7 @@ def main(arguments=None):
     su = setup_main_clutil(
         arguments=arguments,
         docString=__doc__,
-        logLevel="WARNING",
-        options_first=False
+        logLevel="WARNING"
     )
     arguments, settings, log, dbConn = su.setup()
 
@@ -90,6 +90,10 @@ def main(arguments=None):
     log.info(
         '--- STARTING TO RUN THE cl_utils.py AT %s' %
         (startTime,))
+
+    print locals()
+    if interactiveFlag:
+        print "nice"
 
     if create and pathToHostDirectory and projectName:
         create_project_folder(
