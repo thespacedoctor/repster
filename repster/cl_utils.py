@@ -22,6 +22,7 @@ cl_utils.py
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
+    repster -i
     repster create -l <location> -d <pathToHostDirectory> -n <projectName>
     repster create -b -l <location> -d <pathToHostDirectory> -n <projectName> 
     repster hook -l <location> -n <projectName> -w <domainName>
@@ -64,7 +65,8 @@ def main(arguments=None):
     su = setup_main_clutil(
         arguments=arguments,
         docString=__doc__,
-        logLevel="WARNING"
+        logLevel="WARNING",
+        options_first=False
     )
     arguments, settings, log, dbConn = su.setup()
 
