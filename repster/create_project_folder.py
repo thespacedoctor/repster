@@ -41,9 +41,9 @@ from dryxPython.projectsetup import setup_main_clutil
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : June 4, 2014
-## CREATED : June 4, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : June 4, 2014
+# CREATED : June 4, 2014
+# AUTHOR : DRYX
 def create_project_folder(
         log,
         pathToHostDirectory,
@@ -78,8 +78,8 @@ def create_project_folder(
             if os.path.isfile(os.path.join(basePath, d)):
                 exists = os.path.exists("%(dst)s/%(d)s" % locals())
                 if not exists:
-                    shutil.copyfile(os.path.join(basePath, d), "%(dst)s/%(d)s" % locals())
-        
+                    shutil.copyfile(os.path.join(basePath, d),
+                                    "%(dst)s/%(d)s" % locals())
 
     pathToWriteFile = "%(dst)s/%(projectName)s.sublime-project" % locals()
     exists = os.path.exists(pathToWriteFile)
@@ -90,9 +90,9 @@ def create_project_folder(
   }],
   "settings": {
       "python_test_runner": {
-          "test_root": "%(dst)s",
+          "test_root": "%(dst)s/%(projectName)s",
           "test_delimeter": ":",
-          "test_command": "/Library/Frameworks/Python.framework/Versions/2.7/bin/nosetests "
+          "test_command": "/usr/local/Ureka/variants/common/bin/nosetests"
       }
   }
 }

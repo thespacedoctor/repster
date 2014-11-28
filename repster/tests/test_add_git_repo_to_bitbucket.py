@@ -1,12 +1,12 @@
 import os
 import nose
 import shutil
-from .. import create_project_folder
-from .. import create_local_git_repo
-from .. import add_git_repo_to_github
-from gitflow.utKit import utKit
+from repster import create_project_folder
+from repster import create_local_git_repo
+from repster import add_git_repo_to_bitbucket
+from repster.utKit import utKit
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)
 utKit = utKit(moduleDirectory)
 log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
@@ -15,9 +15,9 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_add_git_repo_to_github():
+class test_add_git_repo_to_bitbucket():
 
-    def test_add_git_repo_to_github_function(self):
+    def test_add_git_repo_to_bitbucket_function(self):
         try:
             shutil.rmtree("%(pathToOutputDir)s/testProjectName" % globals())
         except:
@@ -42,7 +42,7 @@ class test_add_git_repo_to_github():
             "pathToProject"] = "%(pathToOutputDir)s/testProjectName" % globals()
         kwargs["pathToCredentials"] = False
         # xt-kwarg_key_and_value
-        add_git_repo_to_github.add_git_repo_to_github(**kwargs)
+        add_git_repo_to_bitbucket.add_git_repo_to_bitbucket(**kwargs)
 
         # x-print-testpage-for-pessto-marshall-web-object
 

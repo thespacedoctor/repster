@@ -5,7 +5,7 @@ def readme():
     with open('README.rst') as f:
         return f.read()
 
-setup(name='gitflow',
+setup(name='repster',
       version='0.1',
       description='',
       long_description=readme(),
@@ -16,17 +16,17 @@ setup(name='gitflow',
           'Topic :: Utilities',
       ],
       keywords='utilities dryx',
-      # url='https://github.com/thespacedoctor/gitflow',
+      # url='https://github.com/thespacedoctor/repster',
       author='thespacedoctor',
       author_email='davidrobertyoung@gmail.com',
       license='MIT',
-      packages=['gitflow'],
+      packages=['repster'],
       # install_requires=[
       #    'pyyaml',
       # ],
       test_suite='nose.collector',
       tests_require=['nose', 'nose-cover3'],
       entry_points={
-          'console_scripts': ['gitflow=gitflow.cl_utils:main'],
+          'console_scripts': ['repster=repster.cl_utils:main'],
       },
       zip_safe=False)

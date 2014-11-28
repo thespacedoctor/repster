@@ -4,7 +4,7 @@
 cl_utils.py
 ===========
 :Summary:
-    Command-line utils for gitflow
+    Command-line utils for repster
 
 :Author:
     David Young
@@ -22,8 +22,9 @@ cl_utils.py
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
-    gitflow create -l <location> -d <pathToHostDirectory> -n <projectName>
-    gitflow create -b -l <location> -d <pathToHostDirectory> -n <projectName> 
+    repster create -l <location> -d <pathToHostDirectory> -n <projectName>
+    repster create -b -l <location> -d <pathToHostDirectory> -n <projectName> 
+    repster hook -l <location> -n <projectName> -w <domainName>
 
     -h, --help        show this help message
     -v, --version     show version
@@ -45,6 +46,9 @@ from add_git_repo_to_github import add_git_repo_to_github
 from add_git_repo_to_tower import add_git_repo_to_tower
 from create_local_git_repo import create_local_git_repo
 from create_project_folder import create_project_folder
+from add_hook_to_bitbucket_repo import add_hook_to_bitbucket_repo
+from add_hook_to_github_repo import add_hook_to_github_repo
+from open_webhook_list_in_browser import open_webhook_list_in_browser
 # from ..__init__ import *
 
 
@@ -69,10 +73,9 @@ def main(arguments=None):
     for arg, val in arguments.iteritems():
         if arg[0] == "-":
             varname = arg.replace("-", "") + "Flag"
-            print varname
         else:
             varname = arg.replace("<", "").replace(">", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -93,7 +96,8 @@ def main(arguments=None):
             projectName=projectName
         )
 
-        pathToProjectRoot = """%(pathToHostDirectory)s/%(projectName)s""" % locals()
+        pathToProjectRoot = """%(pathToHostDirectory)s/%(projectName)s""" % locals(
+        )
         if not branchesFlag:
             create_local_git_repo(
                 log=log,
@@ -129,6 +133,27 @@ def main(arguments=None):
         open_repo_in_sublime(
             log=log,
             pathToProjectRoot=pathToProjectRoot
+        )
+
+    if hook:
+        if location == "bb" or location == "bitbucket":
+            add_hook_to_bitbucket_repo(
+                log,
+                repoName=projectName,
+                hookDomain=domainName,
+                pathToCredentials=False
+            )
+        elif location == "gh" or location == "github":
+            add_hook_to_github_repo(
+                log,
+                repoName=projectName,
+                hookDomain=domainName,
+                pathToCredentials=False
+            )
+        open_webhook_list_in_browser(
+            log=log,
+            location=location,
+            projectName=projectName
         )
 
     if "dbConn" in locals() and dbConn:

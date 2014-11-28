@@ -8,3 +8,6 @@ import add_git_repo_to_github
 
 import add_git_repo_to_tower
 import open_repo_in_sublime
+import add_hook_to_bitbucket_repo
+import add_hook_to_github_repo
+from open_webhook_list_in_browser import open_webhook_list_in_browser

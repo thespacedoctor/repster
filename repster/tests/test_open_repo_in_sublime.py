@@ -3,10 +3,10 @@ import nose
 import shutil
 from .. import create_project_folder
 from .. import create_local_git_repo
-from .. import add_git_repo_to_bitbucket
-from gitflow.utKit import utKit
+from .. import open_repo_in_sublime
+from repster.utKit import utKit
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)
 utKit = utKit(moduleDirectory)
 log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
@@ -15,9 +15,9 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_add_git_repo_to_bitbucket():
+class test_open_repo_in_sublime():
 
-    def test_add_git_repo_to_bitbucket_function(self):
+    def test_open_repo_in_sublime_function(self):
         try:
             shutil.rmtree("%(pathToOutputDir)s/testProjectName" % globals())
         except:
@@ -39,10 +39,8 @@ class test_add_git_repo_to_bitbucket():
         kwargs = {}
         kwargs["log"] = log
         kwargs[
-            "pathToProject"] = "%(pathToOutputDir)s/testProjectName" % globals()
-        kwargs["pathToCredentials"] = False
-        # xt-kwarg_key_and_value
-        add_git_repo_to_bitbucket.add_git_repo_to_bitbucket(**kwargs)
+            "pathToProjectRoot"] = "%(pathToOutputDir)s/testProjectName" % globals()
+        open_repo_in_sublime.open_repo_in_sublime(**kwargs)
 
         # x-print-testpage-for-pessto-marshall-web-object
 

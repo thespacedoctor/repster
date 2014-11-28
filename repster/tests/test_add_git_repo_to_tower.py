@@ -3,9 +3,10 @@ import nose
 import shutil
 from .. import create_project_folder
 from .. import create_local_git_repo
-from gitflow.utKit import utKit
+from .. import add_git_repo_to_tower
+from repster.utKit import utKit
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)
 utKit = utKit(moduleDirectory)
 log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
@@ -14,9 +15,9 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_create_local_git_repo():
+class test_add_git_repo_to_tower():
 
-    def test_create_local_git_repo_function(self):
+    def test_add_git_repo_to_tower_function(self):
         try:
             shutil.rmtree("%(pathToOutputDir)s/testProjectName" % globals())
         except:
@@ -34,6 +35,14 @@ class test_create_local_git_repo():
             "pathToProjectRoot"] = "%(pathToOutputDir)s/testProjectName" % globals()
         kwargs["branches"] = True
         create_local_git_repo.create_local_git_repo(**kwargs)
+
+        kwargs = {}
+        kwargs["log"] = log
+        kwargs[
+            "pathToProjectRoot"] = "%(pathToOutputDir)s/testProjectName" % globals()
+        # xt-kwarg_key_and_value
+
+        add_git_repo_to_tower.add_git_repo_to_tower(**kwargs)
 
         # x-print-testpage-for-pessto-marshall-web-object
 

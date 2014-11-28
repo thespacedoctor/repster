@@ -1,4 +1,4 @@
-# #!/usr/bin/env python
+# !/usr/bin/env python
 # encoding: utf-8
 """
 add_git_repo_to_tower.py
@@ -40,9 +40,9 @@ from dryxPython.projectsetup import setup_main_clutil
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : June 4, 2014
-## CREATED : June 4, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : June 4, 2014
+# CREATED : June 4, 2014
+# AUTHOR : DRYX
 def add_git_repo_to_tower(
         log,
         pathToProjectRoot):
@@ -62,7 +62,7 @@ def add_git_repo_to_tower(
     log.info('starting the ``add_git_repo_to_tower`` function')
 
     from subprocess import Popen, PIPE, STDOUT
-    cmd = """gittower -a %(pathToProjectRoot)s""" % locals()
+    cmd = """gittower %(pathToProjectRoot)s""" % locals()
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())

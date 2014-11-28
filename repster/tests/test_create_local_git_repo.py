@@ -2,9 +2,10 @@ import os
 import nose
 import shutil
 from .. import create_project_folder
-from gitflow.utKit import utKit
+from .. import create_local_git_repo
+from repster.utKit import utKit
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)
 utKit = utKit(moduleDirectory)
 log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
@@ -13,18 +14,26 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_create_project_folder():
-    try:
-        shutil.rmtree("%(pathToOutputDir)s/testProjectName" % globals())
-    except:
-        pass
+class test_create_local_git_repo():
 
-    def test_create_project_folder_function(self):
+    def test_create_local_git_repo_function(self):
+        try:
+            shutil.rmtree("%(pathToOutputDir)s/testProjectName" % globals())
+        except:
+            pass
+
         kwargs = {}
         kwargs["log"] = log
         kwargs["pathToHostDirectory"] = pathToOutputDir
         kwargs["projectName"] = "testProjectName"
         create_project_folder.create_project_folder(**kwargs)
+
+        kwargs = {}
+        kwargs["log"] = log
+        kwargs[
+            "pathToProjectRoot"] = "%(pathToOutputDir)s/testProjectName" % globals()
+        kwargs["branches"] = True
+        create_local_git_repo.create_local_git_repo(**kwargs)
 
         # x-print-testpage-for-pessto-marshall-web-object
 
