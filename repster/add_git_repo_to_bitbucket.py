@@ -19,7 +19,6 @@ add_git_repo_to_bitbucket.py
     - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
 
 :Tasks:
-    @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -29,49 +28,46 @@ from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
 from dryxPython.projectsetup import setup_main_clutil
-# from ..__init__ import *
-
-###################################################################
-# CLASSES                                                         #
-###################################################################
-# xt-class-module-worker-tmpx
-# xt-class-tmpx
 
 
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : June 4, 2014
-## CREATED : June 4, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : June 4, 2014
+# CREATED : June 4, 2014
+# AUTHOR : DRYX
 def add_git_repo_to_bitbucket(
         log,
         pathToProject,
+        strapline=False,
         pathToCredentials=False,
-        private=True):
+        private=True,
+        wiki=False):
     """add git repo to bitbucket
 
     **Key Arguments:**
         - ``log`` -- logger
+        - ``pathToProject`` -- path to the project directory on the local machine
+        - ``strapline`` -- project description
+        - ``pathToCredentials`` -- path to yaml file containing bitbucket credentials
+        - ``private`` -- is repo to be set to private?
+        - ``wiki`` -- wiki [False, same or seperate]
+
 
     **Return:**
-        - None
+        - ``repoUrl`` - the bitbucket url to the repo
 
     **Todo**
-        - @review: when complete, clean add_git_repo_to_bitbucket function
-        - @review: when complete add logging
-        - @review: when complete, decide whether to abstract function to another module
     """
     log.info('starting the ``add_git_repo_to_bitbucket`` function')
 
+    # test remote of local repo
     os.chdir(pathToProject)
-
     from subprocess import Popen, PIPE, STDOUT
     cmd = """git remote""" % locals()
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
-
     if "origin" in output:
         basename = os.path.basename(pathToProject)
         log.error(
@@ -79,52 +75,47 @@ def add_git_repo_to_bitbucket(
             locals())
         return
 
+    # create and execute the command to start a new repo on bitbucket
     if pathToProject[-1] == "/":
         pathToProject = pathToProject[:-1]
-
     projectName = os.path.basename(pathToProject)
-
-    if not pathToCredentials:
-        pathToCredentials = "/Users/Dave/bitbucket_credentials.yaml"
-
     stream = file(pathToCredentials, 'r')
     yamlContent = yaml.load(stream)
     stream.close()
-
     user = yamlContent["user"]
     password = yamlContent["password"]
-
     if private:
         private = "--data is_private='true'"
-
+    else:
+        private = ""
+    if strapline:
+        strapline = "--data description='%(strapline)s'" % locals()
+    else:
+        strapline = ""
+    if wiki == "same":
+        has_wiki = "--data has_wiki='true'"
+    else:
+        has_wiki = ""
     from subprocess import Popen, PIPE, STDOUT
-    cmd = """curl --user %(user)s:%(password)s  https://api.bitbucket.org/1.0/repositories/ --data name=%(projectName)s  %(private)s""" % locals()
+    ueprojectName = projectName.replace(" ", "-").lower()
+
+    cmd = """curl --user %(user)s:%(password)s  https://api.bitbucket.org/1.0/repositories/ --data name=%(ueprojectName)s %(private)s %(strapline)s %(has_wiki)s --data has_issues='true' """ % locals(
+    )
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
 
-    cmd = """git remote add origin git@bitbucket.org:%(user)s/%(projectName)s.git && git push -u origin --all && git push -u origin --tags""" % locals()
+    # add remote repo to local repo and push branches to bitbucket
+    cmd = """git remote add origin git@bitbucket.org:%(user)s/%(ueprojectName)s.git && git push -u origin --all && git push -u origin --tags""" % locals(
+    )
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
+
+    repoUrl = "https://bitbucket.org/%(user)s/%(ueprojectName)s" % locals()
 
     log.info('completed the ``add_git_repo_to_bitbucket`` function')
-    return None
-
-# use the tab-trigger below for new function
-# xt-def-with-logger
-
-###################################################################
-# PRIVATE (HELPER) FUNCTIONS                                      #
-###################################################################
-
-############################################
-# CODE TO BE DEPECIATED                    #
-############################################
+    return repoUrl
 
 if __name__ == '__main__':
     main()
-
-###################################################################
-# TEMPLATE FUNCTIONS                                              #
-###################################################################

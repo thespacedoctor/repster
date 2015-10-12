@@ -19,7 +19,6 @@ add_git_repo_to_github.py
     - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
 
 :Tasks:
-    @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -29,48 +28,56 @@ from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
 from dryxPython.projectsetup import setup_main_clutil
-# from ..__init__ import *
-
-###################################################################
-# CLASSES                                                         #
-###################################################################
-# xt-class-module-worker-tmpx
-# xt-class-tmpx
-
 
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : June 4, 2014
-## CREATED : June 4, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : June 4, 2014
+# CREATED : June 4, 2014
+# AUTHOR : DRYX
+
+
 def add_git_repo_to_github(
         log,
         pathToProject,
-        pathToCredentials=False):
+        strapline,
+        private=False,
+        pathToCredentials=False,
+        wiki=False):
     """add git repo to github
 
     **Key Arguments:**
         - ``log`` -- logger
+        - ``strapline`` -- the short description of the project
+        - ``pathToProject`` -- path to the project on local machine
+        - ``private`` -- private repo?
+        - ``pathToCredentials`` -- path to yaml file containing github credentials
+        - ``wiki`` -- wiki [False, same or seperate]
 
     **Return:**
-        - None
+        - ``repoUrl`` -- url to the github repo
 
     **Todo**
-        - @review: when complete, clean add_git_repo_to_github function
-        - @review: when complete add logging
-        - @review: when complete, decide whether to abstract function to another module
     """
     log.info('starting the ``add_git_repo_to_github`` function')
 
-    os.chdir(pathToProject)
+    if wiki == "same" or wiki == True:
+        sameRepoWiki = "true"
+    else:
+        sameRepoWiki = "false"
 
+    if private:
+        private = "true"
+    else:
+        private = "false"
+
+    # move into local repo directory and test for a remote
+    os.chdir(pathToProject)
     from subprocess import Popen, PIPE, STDOUT
     cmd = """git remote""" % locals()
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
-
     if "origin" in output:
         basename = os.path.basename(pathToProject)
         log.error(
@@ -78,49 +85,34 @@ def add_git_repo_to_github(
             locals())
         return
 
+    # generate and execute the command to create the new github repo
     if pathToProject[-1] == "/":
         pathToProject = pathToProject[:-1]
-
     projectName = os.path.basename(pathToProject)
-
-    if not pathToCredentials:
-        pathToCredentials = "/Users/Dave/github_credentials.yaml"
-
     stream = file(pathToCredentials, 'r')
     yamlContent = yaml.load(stream)
     stream.close()
-
     user = yamlContent["user"]
     token = yamlContent["token"]
-
     from subprocess import Popen, PIPE, STDOUT
-    cmd = """curl -u "%(user)s:%(token)s" https://api.github.com/user/repos -d '{"name":"'%(projectName)s'"}'""" % locals()
+    cmd = """curl -u "%(user)s:%(token)s" https://api.github.com/user/repos -d '{"name":"'%(projectName)s'", "private":%(private)s, "description":"%(strapline)s", "has_wiki":%(sameRepoWiki)s}'""" % locals(
+    )
+    print cmd
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
 
-    cmd = """git remote add origin git@github.com:%(user)s/%(projectName)s.git && git push -u origin --all && git push -u origin --tags""" % locals()
+    # add the github remote to the local git repo and push branches to github
+    cmd = """git remote add origin git@github.com:%(user)s/%(projectName)s.git && git push -u origin --all && git push -u origin --tags""" % locals(
+    )
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
+
+    repoUrl = "https://github.com/%(user)s/%(projectName)s" % locals()
 
     log.info('completed the ``add_git_repo_to_github`` function')
-    return None
-
-# use the tab-trigger below for new function
-# xt-def-with-logger
-
-###################################################################
-# PRIVATE (HELPER) FUNCTIONS                                      #
-###################################################################
-
-############################################
-# CODE TO BE DEPECIATED                    #
-############################################
+    return repoUrl
 
 if __name__ == '__main__':
     main()
-
-###################################################################
-# TEMPLATE FUNCTIONS                                              #
-###################################################################

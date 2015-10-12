@@ -19,7 +19,6 @@ create_project_folder.py
     - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
 
 :Tasks:
-    @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -29,13 +28,6 @@ from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
 from dryxPython.projectsetup import setup_main_clutil
-# from ..__init__ import *
-
-###################################################################
-# CLASSES                                                         #
-###################################################################
-# xt-class-module-worker-tmpx
-# xt-class-tmpx
 
 
 ###################################################################
@@ -47,26 +39,27 @@ from dryxPython.projectsetup import setup_main_clutil
 def create_project_folder(
         log,
         pathToHostDirectory,
-        projectName):
+        projectName,
+        wiki):
     """create project folder
 
     **Key Arguments:**
         - ``log`` -- logger
+        - ``pathToHostDirectory`` -- path to directory used to host the wiki
+        - ``projectName`` -- name of the project
+        - ``wiki`` -- wiki [False, same or seperate]
 
     **Return:**
         - None
 
     **Todo**
-        - @review: when complete, clean create_project_folder function
-        - @review: when complete add logging
-        - @review: when complete, decide whether to abstract function to another module
     """
     log.info('starting the ``create_project_folder`` function')
 
+    # copy template folder to project path
     moduleDirectory = os.path.dirname(__file__)
     src = "%(moduleDirectory)s/resources/template_project" % locals()
     dst = "%(pathToHostDirectory)s/%(projectName)s" % locals()
-
     dst = dst.replace("//", "/")
 
     exists = os.path.exists(dst)
@@ -81,19 +74,31 @@ def create_project_folder(
                     shutil.copyfile(os.path.join(basePath, d),
                                     "%(dst)s/%(d)s" % locals())
 
+    # create the sublime project file for the project
     pathToWriteFile = "%(dst)s/%(projectName)s.sublime-project" % locals()
+    theseFolders = """ { "path": "%(dst)s" } """ % locals()
+    if wiki:
+        wikiName = ""
+        if wiki == "seperate":
+            wikiName = projectName + "_wiki"
+        else:
+            wikiName = projectName
+        wikiName = wikiName + ".wiki"
+        wikiDst = "%(pathToHostDirectory)s/%(wikiName)s" % locals()
+        wikiDst = wikiDst.replace("//", "/")
+        theseFolders = """ %(theseFolders)s,
+        { "path": "%(wikiDst)s" } """ % locals()
+
     exists = os.path.exists(pathToWriteFile)
     if not exists:
         sublime_project_text = """{
-  "folders": [{
-      "path": "%(dst)s"
-  }],
+  "folders": [%(theseFolders)s],
   "settings": {
-      "python_test_runner": {
-          "test_root": "%(dst)s/%(projectName)s",
-          "test_delimeter": ":",
-          "test_command": "/usr/local/Ureka/variants/common/bin/nosetests"
-      }
+      "python_test":{
+          "command": "/Users/Dave/.virtualenvs/%(projectName)s/bin/nosetests",
+          "working_dir": "/Users/Dave/git_repos/%(projectName)s/%(projectName)s",
+          "color_scheme": "dark"
+    }
   }
 }
 """ % locals()
@@ -110,20 +115,6 @@ def create_project_folder(
     log.info('completed the ``create_project_folder`` function')
     return None
 
-# use the tab-trigger below for new function
-# xt-def-with-logger
-
-###################################################################
-# PRIVATE (HELPER) FUNCTIONS                                      #
-###################################################################
-
-############################################
-# CODE TO BE DEPECIATED                    #
-############################################
 
 if __name__ == '__main__':
     main()
-
-###################################################################
-# TEMPLATE FUNCTIONS                                              #
-###################################################################

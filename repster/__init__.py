@@ -11,3 +11,5 @@ import open_repo_in_sublime
 import add_hook_to_bitbucket_repo
 import add_hook_to_github_repo
 from open_webhook_list_in_browser import open_webhook_list_in_browser
+from clone_github_repo_wiki import clone_github_repo_wiki
+from clone_bitbucket_repo_wiki import clone_bitbucket_repo_wiki
