@@ -1,7 +1,7 @@
 (dp0
 S'projectName'
 p1
-S'bilbo'
+S'dummy2'
 p2
 sS'yamlSettingsFlag'
 p3

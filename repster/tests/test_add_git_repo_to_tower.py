@@ -33,7 +33,6 @@ class test_add_git_repo_to_tower():
         kwargs["log"] = log
         kwargs[
             "pathToProjectRoot"] = "%(pathToOutputDir)s/testProjectName" % globals()
-        kwargs["branches"] = True
         create_local_git_repo.create_local_git_repo(**kwargs)
 
         kwargs = {}

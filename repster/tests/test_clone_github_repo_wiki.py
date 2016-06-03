@@ -20,7 +20,6 @@ class test_clone_github_repo_wiki():
         kwargs["log"] = log
         kwargs["projectName"] = "sandwich"
         kwargs["pathToHostDirectory"] = "/Users/Dave/Desktop"
-        kwargs["branches"] = True
         kwargs["strapline"] = "nice seperate wiki mate"
         kwargs["wiki"] = "seperate"
         kwargs["pathToCredentials"] = "/Users/Dave/github_credentials.yaml"

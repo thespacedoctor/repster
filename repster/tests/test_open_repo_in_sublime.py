@@ -33,7 +33,6 @@ class test_open_repo_in_sublime():
         kwargs["log"] = log
         kwargs[
             "pathToProjectRoot"] = "%(pathToOutputDir)s/testProjectName" % globals()
-        kwargs["branches"] = True
         create_local_git_repo.create_local_git_repo(**kwargs)
 
         kwargs = {}

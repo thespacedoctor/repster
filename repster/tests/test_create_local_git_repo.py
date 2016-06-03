@@ -32,7 +32,6 @@ class test_create_local_git_repo():
         kwargs["log"] = log
         kwargs[
             "pathToProjectRoot"] = "%(pathToOutputDir)s/testProjectName" % globals()
-        kwargs["branches"] = True
         create_local_git_repo.create_local_git_repo(**kwargs)
 
         # x-print-testpage-for-pessto-marshall-web-object

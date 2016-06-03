@@ -14,7 +14,7 @@
 
 Usage:
     repster -i create
-    repster create [-b] -l <location> -d <pathToHostDirectory> -n <projectName> -s <strapline> -y <pathToSettings> [-w <seperateOrSame>]
+    repster create -l <location> -d <pathToHostDirectory> -n <projectName> -s <strapline> -y <pathToSettings> [-w <seperateOrSame>]
     repster hook -l <location> -n <projectName> -u <domainName> -y <pathToSettings>
 
     -h, --help         show this help message
@@ -23,7 +23,6 @@ Usage:
     -l, --location     github or bitbucket (gh or bb)
     -d, --directiory   path to the directory to host the local git repo
     -n, --name         name of the project
-    -b, --branches     with master, dev and bug branches
     -s, --strapline    description of project ("use quotes")
     -w, --wiki         add a private or public wiki
     -u, --domainName   the domain name
@@ -156,14 +155,6 @@ def main(arguments=None):
             projectName = raw_input(
                 "name of new git repo?\n  >  " % locals())
 
-        while branchesFlag != "y" and branchesFlag != "n":
-            branchesFlag = raw_input(
-                "create dev and bug branches [y/n]? \n  >  ")
-        if branchesFlag == "y":
-            branchesFlag = True
-        else:
-            branchesFlag = False
-
         while privateFlag != "y" and privateFlag != "n":
             privateFlag = raw_input(
                 "private repo [y/n]? \n  >  ")
@@ -226,8 +217,7 @@ def main(arguments=None):
 
         create_local_git_repo(
             log=log,
-            pathToProjectRoot=pathToProjectRoot,
-            branches=branchesFlag
+            pathToProjectRoot=pathToProjectRoot
         )
 
         wikiUrl = False
@@ -245,7 +235,6 @@ def main(arguments=None):
                     log=log,
                     projectName=projectName,
                     pathToHostDirectory=pathToHostDirectory,
-                    branches=branchesFlag,
                     strapline=strapline,
                     wiki=wiki,
                     pathToCredentials=yamlSettingsFlag
@@ -272,7 +261,6 @@ def main(arguments=None):
                     log=log,
                     projectName=projectName,
                     pathToHostDirectory=pathToHostDirectory,
-                    branches=branchesFlag,
                     strapline=strapline,
                     wiki=wiki,
                     pathToCredentials=yamlSettingsFlag

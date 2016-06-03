@@ -27,15 +27,13 @@ from fundamentals import tools, times
 ###################################################################
 def create_local_git_repo(
         log,
-        pathToProjectRoot,
-        branches=False):
+        pathToProjectRoot):
     """
     *create a first instance of a git repo with all the neccessary files*
 
     **Key Arguments:**
         - ``log`` -- logger
         - ``pathToProjectRoot`` -- path to the root of the project
-        - ``branches`` -- create dev and bug branches?
 
     **Return:**
         - None
@@ -48,17 +46,10 @@ def create_local_git_repo(
     # create the local repo
     os.chdir(pathToProjectRoot)
     from subprocess import Popen, PIPE, STDOUT
-    cmd = """git init && git add --all . && git commit -m "first commit" """ % locals()
+    cmd = """git init && git config gitflow.prefix.versiontag v && git flow init -d && git commit -m "first commit" """ % locals()
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
-
-    # add branches if required
-    if branches:
-        cmd = """git branch bug && git branch dev""" % locals()
-        p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
-        output = p.communicate()[0]
-        log.debug('output: %(output)s' % locals())
 
     log.info('completed the ``create_local_git_repo`` function')
     return None

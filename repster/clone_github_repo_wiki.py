@@ -44,7 +44,6 @@ class clone_github_repo_wiki():
         - ``projectName`` -- name of the project
         - ``pathToHostDirectory`` -- path to directory used to host the wiki
         - ``username`` -- github username
-        - ``branches`` -- include branches in repo?
         - ``strapline`` -- strapline for the code repo
         - ``wiki`` -- wiki [False, same or seperate]
         - ``pathToCredentials`` -- path to yaml file containing the github credentials
@@ -59,7 +58,6 @@ class clone_github_repo_wiki():
             log,
             projectName,
             pathToHostDirectory,
-            branches,
             strapline,
             wiki,
             pathToCredentials
@@ -68,7 +66,6 @@ class clone_github_repo_wiki():
         log.debug("instansiating a new 'clone_github_repo_wiki' object")
         self.projectName = projectName
         self.pathToHostDirectory = pathToHostDirectory
-        self.branches = branches
         self.wiki = wiki
         self.strapline = strapline
         self.pathToCredentials = pathToCredentials
@@ -149,13 +146,6 @@ class clone_github_repo_wiki():
 
         os.chdir("%(pathToHostDirectory)s/%(projectName)s.wiki" % locals(
         ))
-
-        # create branches (if required) and push back up to github
-        if self.branches:
-            cmd = """git branch bug && git branch dev && git push -u origin --all && git push -u origin --tags""" % locals()
-            p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
-            output = p.communicate()[0]
-            self.log.debug('output: %(output)s' % locals())
 
         self.log.info('completed the ``_clone_the_wiki_repo`` method')
         return None
