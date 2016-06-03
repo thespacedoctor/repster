@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-add_git_repo_to_github.py
-============================
-:Summary:
-    add a local git repo to github
+*add a local git repo to github*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ add_git_repo_to_github.py
 :Date Created:
     June 4, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -27,7 +19,7 @@ import yaml
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
@@ -44,7 +36,8 @@ def add_git_repo_to_github(
         private=False,
         pathToCredentials=False,
         wiki=False):
-    """add git repo to github
+    """
+    *add git repo to github*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -57,7 +50,8 @@ def add_git_repo_to_github(
     **Return:**
         - ``repoUrl`` -- url to the github repo
 
-    **Todo**
+    .. todo::
+
     """
     log.info('starting the ``add_git_repo_to_github`` function')
 
@@ -92,10 +86,11 @@ def add_git_repo_to_github(
     stream = file(pathToCredentials, 'r')
     yamlContent = yaml.load(stream)
     stream.close()
+    strapline = strapline.replace("'", "\u0027").replace('"', '\\"')
     user = yamlContent["user"]
     token = yamlContent["token"]
     from subprocess import Popen, PIPE, STDOUT
-    cmd = """curl -u "%(user)s:%(token)s" https://api.github.com/user/repos -d '{"name":"'%(projectName)s'", "private":%(private)s, "description":"%(strapline)s", "has_wiki":%(sameRepoWiki)s}'""" % locals(
+    cmd = """curl -u "%(user)s:%(token)s" https://api.github.com/user/repos -d '{"name":"%(projectName)s", "private":%(private)s, "description":"%(strapline)s", "has_wiki":%(sameRepoWiki)s}'""" % locals(
     )
     print cmd
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)

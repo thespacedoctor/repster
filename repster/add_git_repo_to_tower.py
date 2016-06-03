@@ -1,10 +1,7 @@
 # !/usr/bin/env python
 # encoding: utf-8
 """
-add_git_repo_to_tower.py
-========================
-:Summary:
-    add a local git project to tower
+*add a local git project to tower*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ add_git_repo_to_tower.py
 :Date Created:
     June 4, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -26,7 +18,7 @@ import os
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
@@ -39,7 +31,8 @@ from dryxPython.projectsetup import setup_main_clutil
 def add_git_repo_to_tower(
         log,
         pathToProjectRoot):
-    """create and execute the command to add git repo to tower
+    """
+    *create and execute the command to add git repo to tower*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -48,7 +41,8 @@ def add_git_repo_to_tower(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
     """
     log.info('starting the ``add_git_repo_to_tower`` function')
 

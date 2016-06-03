@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-open_webhook_list_in_browser.py
-===============================
-:Summary:
-    Open the webhooks listing in bitbucket or github
+*Open the webhooks listing in bitbucket or github*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ open_webhook_list_in_browser.py
 :Date Created:
     September 16, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -27,7 +19,7 @@ import webbrowser
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 ###################################################################
@@ -40,7 +32,8 @@ def open_webhook_list_in_browser(
         log,
         location,
         projectName):
-    """open webhook list in browser
+    """
+    *open webhook list in browser*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -50,7 +43,8 @@ def open_webhook_list_in_browser(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
     """
     log.info('starting the ``open_webhook_list_in_browser`` function')
 

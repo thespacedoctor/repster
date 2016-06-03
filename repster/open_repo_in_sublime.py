@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-open_repo_in_sublime.py
-=======================
-:Summary:
-    Open the project in sublime
+*Open the project in sublime*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ open_repo_in_sublime.py
 :Date Created:
     June 4, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -26,7 +18,7 @@ import os
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 ###################################################################
@@ -38,7 +30,8 @@ from dryxPython.projectsetup import setup_main_clutil
 def open_repo_in_sublime(
         log,
         pathToProjectRoot):
-    """create and execute command to open repo in sublime
+    """
+    *create and execute command to open repo in sublime*
 
     **Key Arguments:**
         - ``log`` -- logger,
@@ -47,7 +40,8 @@ def open_repo_in_sublime(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
     """
     log.info('starting the ``open_repo_in_sublime`` function')
 

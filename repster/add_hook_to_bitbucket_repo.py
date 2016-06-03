@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-add_hook_to_bitbucket_repo.py
-=============================
-:Summary:
-    Add a hook to an existing bitbucket repo
+*Add a hook to an existing bitbucket repo*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ add_hook_to_bitbucket_repo.py
 :Date Created:
     June 25, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -28,7 +20,7 @@ from docopt import docopt
 import yaml
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 ###################################################################
@@ -42,7 +34,8 @@ def add_hook_to_bitbucket_repo(
         repoName,
         hookDomain,
         pathToCredentials=False):
-    """add hook to bitbucket repo
+    """
+    *add hook to bitbucket repo*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -53,7 +46,8 @@ def add_hook_to_bitbucket_repo(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
     """
     log.info('starting the ``add_hook_to_bitbucket_repo`` function')
 

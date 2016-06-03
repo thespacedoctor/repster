@@ -1,7 +1,7 @@
 (dp0
 S'projectName'
 p1
-S'mmd-prez'
+S'lv_pesstovm03_settings'
 p2
 sS'yamlSettingsFlag'
 p3
@@ -9,7 +9,7 @@ S'/Users/Dave/.bitbucket_credentials.yaml'
 p4
 sS'strapline'
 p5
-S'MMD version of prez - a markdown presentation tool using reveal.js'
+S'Settings and cronscripts for LV code running on PESSTO VM03'
 p6
 sS'pathToHostDirectory'
 p7

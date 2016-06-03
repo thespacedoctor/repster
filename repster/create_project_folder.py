@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-create_project_folder.py
-========================
-:Summary:
-    Create the project folder from template
+*Create the project folder from template*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ create_project_folder.py
 :Date Created:
     June 4, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -27,7 +19,7 @@ import shutil
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 ###################################################################
@@ -41,7 +33,8 @@ def create_project_folder(
         pathToHostDirectory,
         projectName,
         wiki):
-    """create project folder
+    """
+    *create project folder*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -52,7 +45,8 @@ def create_project_folder(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
     """
     log.info('starting the ``create_project_folder`` function')
 

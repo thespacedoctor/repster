@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-cl_utils.py
-===========
-:Summary:
-    Command-line utils for repster
+*Command-line utils for repster*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ cl_utils.py
 :Date Created:
     June 4, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 
 Usage:
     repster -i create
@@ -45,7 +37,7 @@ import webbrowser
 import pickle
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 from open_repo_in_sublime import open_repo_in_sublime
 from add_git_repo_to_bitbucket import add_git_repo_to_bitbucket
 from add_git_repo_to_github import add_git_repo_to_github
@@ -70,9 +62,9 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``cl_utils.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``cl_utils.py`` is run as a single script from the cl, or when installed as a cl command*
     """
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="WARNING",
@@ -100,7 +92,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE cl_utils.py AT %s' %
         (startTime,))
@@ -332,8 +324,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info(
         '-- FINISHED ATTEMPT TO RUN THE cl_utils.py AT %s (RUNTIME: %s) --' %
         (endTime, runningTime, ))

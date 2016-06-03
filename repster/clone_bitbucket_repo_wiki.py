@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-clone_bitbucket_repo_wiki.py
-============================
-:Summary:
-    Clone the wiki for a bitbucket repo
+*Clone the wiki for a bitbucket repo*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ clone_bitbucket_repo_wiki.py
 :Date Created:
     December 8, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -29,7 +21,7 @@ import yaml
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 def tab_complete(text, state):
@@ -43,7 +35,7 @@ def tab_complete(text, state):
 class clone_bitbucket_repo_wiki():
 
     """
-    The worker class for the clone_bitbucket_repo_wiki module
+    *The worker class for the clone_bitbucket_repo_wiki module*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -55,7 +47,8 @@ class clone_bitbucket_repo_wiki():
         - ``wiki`` -- wiki (False, same or seperate)
         - ``pathToCredentials`` -- path to yaml file containing  credentials
 
-    **Todo**
+    .. todo::
+
     """
     # Initialisation
 
@@ -96,12 +89,14 @@ class clone_bitbucket_repo_wiki():
 
     # Method Attributes
     def get(self):
-        """get the clone_bitbucket_repo_wiki object
+        """
+        *get the clone_bitbucket_repo_wiki object*
 
         **Return:**
             - ``wikiUrl, pathToWikiRoot`` -- the URL to bitbucket wiki, path to wiki repo on local machine
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``get`` method')
 
@@ -127,12 +122,14 @@ class clone_bitbucket_repo_wiki():
 
     def _clone_the_wiki_repo(
             self):
-        """ clone the wiki repo
+        """
+        *clone the wiki repo*
 
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``_clone_the_wiki_repo`` method')
 
@@ -163,12 +160,14 @@ class clone_bitbucket_repo_wiki():
 
     def _create_new_seperate_wiki(
             self):
-        """generate the command to create a repo for a seperate wiki and then execute
+        """
+        *generate the command to create a repo for a seperate wiki and then execute*
 
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``_create_new_seperate_wiki`` method')
 

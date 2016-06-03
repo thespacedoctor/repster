@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-clone_github_repo_wiki.py
-=========================
-:Summary:
-    Clone a github wiki to a specific location on computer
+*Clone a github wiki to a specific location on computer*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ clone_github_repo_wiki.py
 :Date Created:
     ggd
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -31,7 +23,7 @@ from docopt import docopt
 from mechanize import Browser
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 def tab_complete(text, state):
@@ -45,7 +37,7 @@ def tab_complete(text, state):
 class clone_github_repo_wiki():
 
     """
-    The worker class for the clone_github_repo_wiki module
+    *The worker class for the clone_github_repo_wiki module*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -57,7 +49,8 @@ class clone_github_repo_wiki():
         - ``wiki`` -- wiki [False, same or seperate]
         - ``pathToCredentials`` -- path to yaml file containing the github credentials
 
-    **Todo**
+    .. todo::
+
     """
     # Initialisation
 
@@ -99,12 +92,14 @@ class clone_github_repo_wiki():
 
     # Method Attributes
     def get(self):
-        """get the clone_github_repo_wiki object
+        """
+        *get the clone_github_repo_wiki object*
 
         **Return:**
             - ``wikiUrl, pathToWikiRoot`` -- the URL to github wiki, path to wiki repo on local machine
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``get`` method')
 
@@ -129,12 +124,14 @@ class clone_github_repo_wiki():
 
     def _clone_the_wiki_repo(
             self):
-        """ clone the wiki repo
+        """
+        *clone the wiki repo*
 
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``_clone_the_wiki_repo`` method')
 
@@ -165,12 +162,14 @@ class clone_github_repo_wiki():
 
     def _initiate_the_wiki(
             self):
-        """ initiate the github wiki - not available in API so fill in form on github pages
+        """
+        *initiate the github wiki - not available in API so fill in form on github pages*
 
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``_initiate_the_wiki`` method')
 
@@ -197,12 +196,14 @@ class clone_github_repo_wiki():
 
     def _create_new_seperate_wiki(
             self):
-        """ create new seperate wiki -  create and execute the command to create the wiki repo
+        """
+        *create new seperate wiki -  create and execute the command to create the wiki repo*
 
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``_create_new_seperate_wiki`` method')
 

@@ -1,7 +1,7 @@
 (dp0
 S'projectName'
 p1
-S'templates'
+S'bilbo'
 p2
 sS'yamlSettingsFlag'
 p3
@@ -9,7 +9,7 @@ S'/Users/Dave/.github_credentials.yaml'
 p4
 sS'strapline'
 p5
-S'Some templates for Frankenstein'
+S'Commands to help build and maintain a gollum wiki'
 p6
 sS'pathToHostDirectory'
 p7
