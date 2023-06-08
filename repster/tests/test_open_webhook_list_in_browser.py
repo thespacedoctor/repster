@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_open_webhook_list_in_browser():
+class test_open_webhook_list_in_browser(unittest.TestCase):
 
     def test_open_webhook_list_in_browser_function(self):
         kwargs = {}

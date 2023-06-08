@@ -49,7 +49,7 @@ def add_hook_to_bitbucket_repo(
     .. todo::
 
     """
-    log.info('starting the ``add_hook_to_bitbucket_repo`` function')
+    log.debug('starting the ``add_hook_to_bitbucket_repo`` function')
 
     # create the command to add the hook to the repo
     stream = file(pathToCredentials, 'r')
@@ -83,7 +83,7 @@ def add_hook_to_bitbucket_repo(
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
 
-    log.info('completed the ``add_hook_to_bitbucket_repo`` function')
+    log.debug('completed the ``add_hook_to_bitbucket_repo`` function')
     return None
 
 if __name__ == '__main__':

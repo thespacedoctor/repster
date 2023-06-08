@@ -14,7 +14,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_create_local_git_repo():
+class test_create_local_git_repo(unittest.TestCase):
 
     def test_create_local_git_repo_function(self):
         try:

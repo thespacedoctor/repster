@@ -43,7 +43,7 @@ def open_repo_in_sublime(
     .. todo::
 
     """
-    log.info('starting the ``open_repo_in_sublime`` function')
+    log.debug('starting the ``open_repo_in_sublime`` function')
 
     basePath = pathToProjectRoot
     for d in os.listdir(basePath):
@@ -56,7 +56,7 @@ def open_repo_in_sublime(
                 output = p.communicate()[0]
                 log.debug('output: %(output)s' % locals())
 
-    log.info('completed the ``open_repo_in_sublime`` function')
+    log.debug('completed the ``open_repo_in_sublime`` function')
     return None
 
 

@@ -46,7 +46,7 @@ def open_webhook_list_in_browser(
     .. todo::
 
     """
-    log.info('starting the ``open_webhook_list_in_browser`` function')
+    log.debug('starting the ``open_webhook_list_in_browser`` function')
 
     # Open URL in a new tab, if a browser window is already open.
     if location == "bb" or location == "bitbucket":
@@ -60,7 +60,7 @@ def open_webhook_list_in_browser(
         )
         webbrowser.open_new_tab(url)
 
-    log.info('completed the ``open_webhook_list_in_browser`` function')
+    log.debug('completed the ``open_webhook_list_in_browser`` function')
     return None
 
 

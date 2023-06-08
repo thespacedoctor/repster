@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_add_hook_to_github_repo():
+class test_add_hook_to_github_repo(unittest.TestCase):
 
     def test_add_hook_to_github_repo_function(self):
         # xt-kwargs

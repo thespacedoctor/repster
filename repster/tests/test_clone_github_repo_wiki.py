@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_clone_github_repo_wiki():
+class test_clone_github_repo_wiki(unittest.TestCase):
 
     def test_clone_github_repo_wiki_function(self):
         kwargs = {}

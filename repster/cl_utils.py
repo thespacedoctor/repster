@@ -14,19 +14,20 @@
 
 Usage:
     repster -i create
-    repster create -l <location> -d <pathToHostDirectory> -n <projectName> -s <strapline> -y <pathToSettings> [-w <seperateOrSame>]
+    repster create -l <location> -d <pathToHostDirectory> -n <projectName> -s <strapline> -y <pathToSettings> [-w <seperateOrSame>] [-r <repoName>]
     repster hook -l <location> -n <projectName> -u <domainName> -y <pathToSettings>
 
-    -h, --help         show this help message
-    -v, --version      show version
-    -i, --interactive  interactive mode
-    -l, --location     github or bitbucket (gh or bb)
-    -d, --directiory   path to the directory to host the local git repo
-    -n, --name         name of the project
-    -s, --strapline    description of project ("use quotes")
-    -w, --wiki         add a private or public wiki
-    -u, --domainName   the domain name
-    -y, --yamlSettings path to the yaml settings file
+    -h, --help                             show this help message
+    -v, --version                          show version
+    -i, --interactive                      interactive mode
+    -l, --location                         github or bitbucket (gh or bb)
+    -d, --directiory                       path to the directory to host the local git repo
+    -n, --name                             name of the project
+    -s, --strapline                        description of project ("use quotes")
+    -w, --wiki                             add a private or public wiki
+    -u, --domainName                       the domain name
+    -y, --yamlSettings                     path to the yaml settings file
+    -r <repoName>, --repoName <repoName>   remote repo name if not the same as the local projectName
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -226,7 +227,7 @@ def main(arguments=None):
                 log=log,
                 pathToProject=pathToProjectRoot,
                 strapline=strapline,
-                pathToCredentials=yamlSettingsFlag,
+                pathToCredentials=pathToSettings,
                 private=privateFlag,
                 wiki=wiki
             )
@@ -237,7 +238,7 @@ def main(arguments=None):
                     pathToHostDirectory=pathToHostDirectory,
                     strapline=strapline,
                     wiki=wiki,
-                    pathToCredentials=yamlSettingsFlag
+                    pathToCredentials=pathToSettings
                 )
                 wikiUrl, pathToWikiRoot = thisWiki.get()
                 add_git_repo_to_tower(
@@ -253,7 +254,8 @@ def main(arguments=None):
                 strapline=strapline,
                 private=privateFlag,
                 pathToCredentials=yamlSettingsFlag,
-                wiki=wiki
+                wiki=wiki,
+                projectName=repoNameFlag
             )
 
             if wiki:
@@ -284,7 +286,10 @@ def main(arguments=None):
         )
 
         ## open in webbrowser
-        webbrowser.open_new_tab(repoUrl)
+        try:
+            webbrowser.open_new_tab(repoUrl)
+        except:
+            pass
 
     # hook commands ...
     if hook:

@@ -44,7 +44,7 @@ def add_git_repo_to_tower(
     .. todo::
 
     """
-    log.info('starting the ``add_git_repo_to_tower`` function')
+    log.debug('starting the ``add_git_repo_to_tower`` function')
 
     from subprocess import Popen, PIPE, STDOUT
     cmd = """gittower "%(pathToProjectRoot)s" """ % locals()
@@ -52,7 +52,7 @@ def add_git_repo_to_tower(
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
 
-    log.info('completed the ``add_git_repo_to_tower`` function')
+    log.debug('completed the ``add_git_repo_to_tower`` function')
     return None
 
 if __name__ == '__main__':

@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_create_project_folder():
+class test_create_project_folder(unittest.TestCase):
     try:
         shutil.rmtree("%(pathToOutputDir)s/testProjectName" % globals())
     except:

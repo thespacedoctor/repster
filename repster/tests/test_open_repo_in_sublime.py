@@ -15,7 +15,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_open_repo_in_sublime():
+class test_open_repo_in_sublime(unittest.TestCase):
 
     def test_open_repo_in_sublime_function(self):
         try:

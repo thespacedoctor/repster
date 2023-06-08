@@ -35,7 +35,8 @@ def add_git_repo_to_github(
         strapline,
         private=False,
         pathToCredentials=False,
-        wiki=False):
+        wiki=False,
+        projectName=False):
     """
     *add git repo to github*
 
@@ -46,6 +47,7 @@ def add_git_repo_to_github(
         - ``private`` -- private repo?
         - ``pathToCredentials`` -- path to yaml file containing github credentials
         - ``wiki`` -- wiki [False, same or seperate]
+        - ``projectName`` -- a github project name. If False the directory name is used as the project name. Default *False*
 
     **Return:**
         - ``repoUrl`` -- url to the github repo
@@ -53,7 +55,7 @@ def add_git_repo_to_github(
     .. todo::
 
     """
-    log.info('starting the ``add_git_repo_to_github`` function')
+    log.debug('starting the ``add_git_repo_to_github`` function')
 
     if wiki == "same" or wiki == True:
         sameRepoWiki = "true"
@@ -82,7 +84,8 @@ def add_git_repo_to_github(
     # generate and execute the command to create the new github repo
     if pathToProject[-1] == "/":
         pathToProject = pathToProject[:-1]
-    projectName = os.path.basename(pathToProject)
+    if not projectName:
+        projectName = os.path.basename(pathToProject)
     stream = file(pathToCredentials, 'r')
     yamlContent = yaml.load(stream)
     stream.close()
@@ -98,15 +101,17 @@ def add_git_repo_to_github(
     log.debug('output: %(output)s' % locals())
 
     # add the github remote to the local git repo and push branches to github
+    projectName = projectName.replace(" ", "-")
     cmd = """git remote add origin git@github.com:%(user)s/%(projectName)s.git && git push -u origin --all && git push -u origin --tags""" % locals(
     )
+    print cmd
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
 
     repoUrl = "https://github.com/%(user)s/%(projectName)s" % locals()
 
-    log.info('completed the ``add_git_repo_to_github`` function')
+    log.debug('completed the ``add_git_repo_to_github`` function')
     return repoUrl
 
 if __name__ == '__main__':

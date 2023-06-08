@@ -49,7 +49,7 @@ def add_hook_to_github_repo(
     .. todo::
 
     """
-    log.info('starting the ``add_hook_to_github_repo`` function')
+    log.debug('starting the ``add_hook_to_github_repo`` function')
 
     # create and execute the command to add the hook to bitbucket
     stream = file(pathToCredentials, 'r')
@@ -70,7 +70,7 @@ def add_hook_to_github_repo(
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
 
-    log.info('completed the ``add_hook_to_github_repo`` function')
+    log.debug('completed the ``add_hook_to_github_repo`` function')
     return None
 
 

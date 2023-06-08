@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_add_hook_to_bitbucket_repo():
+class test_add_hook_to_bitbucket_repo(unittest.TestCase):
 
     def test_add_hook_to_bitbucket_repo_function(self):
         # xt-kwargs

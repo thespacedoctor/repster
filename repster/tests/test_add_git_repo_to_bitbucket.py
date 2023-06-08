@@ -15,7 +15,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_add_git_repo_to_bitbucket():
+class test_add_git_repo_to_bitbucket(unittest.TestCase):
 
     def test_add_git_repo_to_bitbucket_function(self):
         try:

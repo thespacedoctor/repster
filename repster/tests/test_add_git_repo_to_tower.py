@@ -15,7 +15,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_add_git_repo_to_tower():
+class test_add_git_repo_to_tower(unittest.TestCase):
 
     def test_add_git_repo_to_tower_function(self):
         try:

@@ -95,7 +95,7 @@ class clone_bitbucket_repo_wiki():
         .. todo::
 
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         # If seperate wiki, create the bitbucket repo
         if self.wiki == "seperate":
@@ -114,7 +114,7 @@ class clone_bitbucket_repo_wiki():
             wikiUrl = False
         pathToWikiRoot = "%(pathToHostDirectory)s/%(projectName)s.wiki" % locals()
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return wikiUrl, pathToWikiRoot
 
     def _clone_the_wiki_repo(
@@ -128,7 +128,7 @@ class clone_bitbucket_repo_wiki():
         .. todo::
 
         """
-        self.log.info('starting the ``_clone_the_wiki_repo`` method')
+        self.log.debug('starting the ``_clone_the_wiki_repo`` method')
 
         # create and execute the clone commmand
         username = self.username
@@ -142,7 +142,7 @@ class clone_bitbucket_repo_wiki():
         output = p.communicate()[0]
         self.log.debug('output: %(output)s' % locals())
 
-        self.log.info('completed the ``_clone_the_wiki_repo`` method')
+        self.log.debug('completed the ``_clone_the_wiki_repo`` method')
         return None
 
     def _create_new_seperate_wiki(
@@ -156,7 +156,7 @@ class clone_bitbucket_repo_wiki():
         .. todo::
 
         """
-        self.log.info('starting the ``_create_new_seperate_wiki`` method')
+        self.log.debug('starting the ``_create_new_seperate_wiki`` method')
 
         projectName = self.projectName
         strapline = self.strapline
@@ -172,7 +172,7 @@ class clone_bitbucket_repo_wiki():
         output = p.communicate()[0]
         self.log.debug('output: %(output)s' % locals())
 
-        self.log.info('completed the ``_create_new_seperate_wiki`` method')
+        self.log.debug('completed the ``_create_new_seperate_wiki`` method')
         return None
 
 

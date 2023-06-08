@@ -98,7 +98,7 @@ class clone_github_repo_wiki():
         .. todo::
 
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         if self.wiki == "seperate":
             self.projectName = self.projectName + "_wiki"
@@ -116,7 +116,7 @@ class clone_github_repo_wiki():
             wikiUrl = False
         pathToWikiRoot = "%(pathToHostDirectory)s/%(projectName)s.wiki" % locals()
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return wikiUrl, pathToWikiRoot
 
     def _clone_the_wiki_repo(
@@ -130,7 +130,7 @@ class clone_github_repo_wiki():
         .. todo::
 
         """
-        self.log.info('starting the ``_clone_the_wiki_repo`` method')
+        self.log.debug('starting the ``_clone_the_wiki_repo`` method')
 
         # create the command to clone the github repo then execute
         username = self.username
@@ -147,7 +147,7 @@ class clone_github_repo_wiki():
         os.chdir("%(pathToHostDirectory)s/%(projectName)s.wiki" % locals(
         ))
 
-        self.log.info('completed the ``_clone_the_wiki_repo`` method')
+        self.log.debug('completed the ``_clone_the_wiki_repo`` method')
         return None
 
     def _initiate_the_wiki(
@@ -161,7 +161,7 @@ class clone_github_repo_wiki():
         .. todo::
 
         """
-        self.log.info('starting the ``_initiate_the_wiki`` method')
+        self.log.debug('starting the ``_initiate_the_wiki`` method')
 
         username = self.username
         projectName = self.projectName
@@ -181,7 +181,7 @@ class clone_github_repo_wiki():
         br.select_form("gollum-editor")
         response = br.submit()
 
-        self.log.info('completed the ``_initiate_the_wiki`` method')
+        self.log.debug('completed the ``_initiate_the_wiki`` method')
         return None
 
     def _create_new_seperate_wiki(
@@ -195,7 +195,7 @@ class clone_github_repo_wiki():
         .. todo::
 
         """
-        self.log.info('starting the ``_create_new_seperate_wiki`` method')
+        self.log.debug('starting the ``_create_new_seperate_wiki`` method')
 
         projectName = self.projectName
         strapline = self.strapline
@@ -210,7 +210,7 @@ class clone_github_repo_wiki():
         output = p.communicate()[0]
         self.log.debug('output: %(output)s' % locals())
 
-        self.log.info('completed the ``_create_new_seperate_wiki`` method')
+        self.log.debug('completed the ``_create_new_seperate_wiki`` method')
         return None
 
 

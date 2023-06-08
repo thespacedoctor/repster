@@ -41,7 +41,7 @@ def create_local_git_repo(
     .. todo::
 
     """
-    log.info('starting the ``create_local_git_repo`` function')
+    log.debug('starting the ``create_local_git_repo`` function')
 
     # create the local repo
     os.chdir(pathToProjectRoot)
@@ -51,7 +51,7 @@ def create_local_git_repo(
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
 
-    log.info('completed the ``create_local_git_repo`` function')
+    log.debug('completed the ``create_local_git_repo`` function')
     return None
 
 

@@ -53,7 +53,7 @@ def add_git_repo_to_bitbucket(
     .. todo::
 
     """
-    log.info('starting the ``add_git_repo_to_bitbucket`` function')
+    log.debug('starting the ``add_git_repo_to_bitbucket`` function')
 
     # test remote of local repo
     os.chdir(pathToProject)
@@ -108,7 +108,7 @@ def add_git_repo_to_bitbucket(
 
     repoUrl = "https://bitbucket.org/%(user)s/%(ueprojectName)s" % locals()
 
-    log.info('completed the ``add_git_repo_to_bitbucket`` function')
+    log.debug('completed the ``add_git_repo_to_bitbucket`` function')
     return repoUrl
 
 if __name__ == '__main__':

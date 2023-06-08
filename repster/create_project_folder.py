@@ -48,7 +48,7 @@ def create_project_folder(
     .. todo::
 
     """
-    log.info('starting the ``create_project_folder`` function')
+    log.debug('starting the ``create_project_folder`` function')
 
     # copy template folder to project path
     moduleDirectory = os.path.dirname(__file__)
@@ -89,7 +89,7 @@ def create_project_folder(
   "folders": [%(theseFolders)s],
   "settings": {
       "python_test":{
-          "command": "/Users/Dave/.virtualenvs/%(projectName)s/bin/nosetests",
+          "command": "/Users/Dave/anaconda/envs/%(projectName)s/bin/nose2",
           "working_dir": "/Users/Dave/git_repos/%(projectName)s/%(projectName)s",
           "color_scheme": "dark"
     }
@@ -106,7 +106,7 @@ def create_project_folder(
         writeFile.write(sublime_project_text)
         writeFile.close()
 
-    log.info('completed the ``create_project_folder`` function')
+    log.debug('completed the ``create_project_folder`` function')
     return None
 
 
